@@ -174,18 +174,31 @@ PC端基础meta标签
 
 移动端如何定义字体font-family
 @ --------------------------------------中文字体的英文名称
+
 @ 宋体      SimSun
+
 @ 黑体      SimHei
+
 @ 微信雅黑   Microsoft Yahei
+
 @ 微软正黑体 Microsoft JhengHei
+
 @ 新宋体    NSimSun
+
 @ 新细明体  MingLiU
+
 @ 细明体    MingLiU
+
 @ 标楷体    DFKai-SB
+
 @ 仿宋     FangSong
+
 @ 楷体     KaiTi
+
 @ 仿宋_GB2312  FangSong_GB2312
+
 @ 楷体_GB2312  KaiTi_GB2312  
+
 @
 @ 说明：中文字体多数使用宋体、雅黑，英文用Helvetica
 ```html
@@ -221,19 +234,28 @@ body { font-family: Microsoft Yahei,SimSun,Helvetica; }
 移动端touch事件（区分webkit和winphone）
 // 当用户手指放在移动设备在屏幕上滑动会触发的touch事件
 // 以下支持webkit
+
 touchstart // 当手指触碰屏幕时候发生。不管当前有多少只手指
+
 touchmove // 当手指在屏幕上滑动时连续触发。通常我们在滑屏页面，会调用event的preventDefault()可以阻止默认情况的发生：阻止页面滚动
+
 touchend // 当手指离开屏幕时触发
+
 touchcancel // 系统停止跟踪触摸时候会触发。例如在触摸过程中突然页面alert()一个提示框，此时会触发该事件，这个事件比较少用
 
 //TouchEvent说明：
 touches：屏幕上所有手指的信息
+
 targetTouches：手指在目标区域的手指信息
+
 changedTouches：最近一次触发该事件的手指信息
+
 touchend时，touches与targetTouches信息会被删除，changedTouches保存的最后一次的信息，最好用于计算手指信息
 
 //参数信息(changedTouches[0])
+
 clientX、clientY在显示区的坐标
+
 target：当前元素
 
 //事件响应顺序
@@ -241,9 +263,13 @@ ontouchstart  > ontouchmove  > ontouchend > onclick
 
 // 以下支持winphone 8
 MSPointerDown // 当手指触碰屏幕时候发生。不管当前有多少只手指
+
 MSPointerMove // 当手指在屏幕上滑动时连续触发。通常我们再滑屏页面，会调用css的html{-ms-touch-action: none;}可以阻止默认情况的发生：阻止页面滚动
+
 MSPointerUp // 当手指离开屏幕时触发
+
 移动端click屏幕产生200-300ms的延时响应
+
 说明：移动设备上的web网页是有300ms延迟的，往往会造成按钮点击延迟甚至是点击失效。
 
 以下是历史原因，来源一个公司内一个同事的分享：2007年苹果发布首款iphone上IOS系统搭载的safari为了将适用于PC端上大屏幕的网页能比较好的展示在手机端上，使用了双击缩放(double tap to zoom)的方案，比如你在手机上用浏览器打开一个PC上的网页，你可能在看到页面内容虽然可以撑满整个屏幕，但是字体、图片都很小看不清，此时可以快速双击屏幕上的某一部分，你就能看清该部分放大后的内容，再次双击后能回到原始状态。
@@ -518,14 +544,22 @@ function isWeixin(){
 ```
 android 2.3 bug
 //1.@-webkit-keyframes 需要以0%开始100%结束，0%的百分号不能去掉
+
 //2.after和before伪类无法使用动画animation
+
 //3.border-radius不支持%单位，如要兼容，可以给radius设置一下较大的值
+
 //4.translate百分比的写法和scale在一起会导致失效，例如：
+
 -webkit-transform: translate(-50%,-50%) scale(-0.5, 1)
 android 4.x bug
+
 //1.三星 Galaxy S4中自带浏览器不支持border-radius缩写
+
 //2.同时设置border-radius和背景色的时候，背景色会溢出到圆角以外部分
+
 //3.部分手机(如三星)，a链接支持鼠标:visited事件，也就是说链接访问后文字变为紫色
+
 //4.android无法同时播放多音频audio
 消除transition闪屏
 .css {
@@ -544,15 +578,24 @@ android 4.x bug
 }
 渲染优化
 1、禁止使用iframe（阻塞父文档onload事件）
+
 2、禁止使用gif图片实现loading效果（降低CPU消耗，提升渲染性能）
+
 3、使用CSS3代码代替JS动画；
+
 4、开启GPU加速；
+
 5、使用base64位编码图片(仅小图而言，大图不建议使用)
 
+
 对于一些小图标，可以使用base64位编码，以减少网络请求。但不建议大图使用，比较耗费CPU。小图标优势在于：
+
 减少HTTP请求；
+
 避免文件跨域；
+
 修改及时生效；
+
 腾讯方案
 ```javasctip
 var autoScale = function(){
